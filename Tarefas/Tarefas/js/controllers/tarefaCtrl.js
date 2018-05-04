@@ -2,6 +2,7 @@
 app.controller('tarefaCtrl', function ($scope, tarefaAPI) {
     $scope.tarefas = [];
 
+    //Tratamento de erro do http
     function httpError(data, parent) {
         var msgErro = data.data;
         if (msgErro && msgErro.d) msgErro = msgErro.d;
