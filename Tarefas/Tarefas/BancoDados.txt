@@ -1,0 +1,14 @@
+﻿--- Criar base de dados para sistema de Tarefas
+
+CREATE TABLE TarefaTipo (Id int identity(1,1) primary key,	
+	Descricao varchar(30) not null) 
+
+CREATE TABLE Tarefa (Id int identity(1,1) primary key, 
+	TipoId int not null, 
+	Descricao varchar(100) not null, 
+	Data datetime not null) 
+
+INSERT INTO TarefaTipo (Descricao) values ('Reunião')
+INSERT INTO TarefaTipo (Descricao) values ('Ligação')
+INSERT INTO TarefaTipo (Descricao) values ('Visitar Cliente')
+INSERT INTO TarefaTipo (Descricao) values ('Demonstração')
