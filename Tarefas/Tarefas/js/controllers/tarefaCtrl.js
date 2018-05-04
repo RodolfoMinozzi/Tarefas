@@ -1,6 +1,6 @@
 ﻿//Autor: Rodolfo Minozzi
 //Data: 03/05/2018
-// *** Controller reponsável pelos aventos na tela de tarefa
+// *** Controller reponsável pelos eventos na tela de tarefa
 
 var app = angular.module('tarefaApp', []);
 app.controller('tarefaCtrl', function ($scope, tarefaAPI) {
