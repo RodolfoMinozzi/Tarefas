@@ -11,7 +11,7 @@ namespace Tarefas.Data
     public class TarefaData
     {
         /// <summary>
-        /// CREATE TABLE Tarefa (Id int identity(1,1) primary key, TipoId int not null, Descricao varchar(30) not null, Data datetime not null) 
+        /// CREATE TABLE Tarefa (Id int identity(1,1) primary key, TipoId int not null, Titulo varchar(100) not null, Descricao varchar(250) not null, Data datetime not null) 
         /// </summary>
 
         string con;
