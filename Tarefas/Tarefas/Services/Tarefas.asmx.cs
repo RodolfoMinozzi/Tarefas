@@ -10,7 +10,8 @@ using Tarefas.Models;
 namespace Tarefas.Services
 {
     /// <summary>
-    /// Descrição resumida de Tarefas
+    /// Rodolfo Minozzi, 03/05/2018
+    /// Serviço para chamada dos métodos responsáveis pela comunicação com bando para as Tarefas
     /// </summary>
     //[WebService(Namespace = "http://tempuri.org/")]
     //[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]

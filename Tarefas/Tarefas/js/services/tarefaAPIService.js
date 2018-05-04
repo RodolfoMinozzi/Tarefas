@@ -1,4 +1,8 @@
-﻿angular.module("tarefaApp").factory('tarefaAPI', function ($http) {
+﻿//Autor: Rodolfo Minozzi
+//Data: 03/05/2018
+// *** serviço responsável pela comunicação com o seviço de WebService em Services/Tarefas.asmx
+
+angular.module("tarefaApp").factory('tarefaAPI', function ($http) {
 
     var _postTarefaSalvar = function (tarefa) {
         return $http(postTarefa('TarefaSalvar', { tarefa: angular.toJson(tarefa) }));
