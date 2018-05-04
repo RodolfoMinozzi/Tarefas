@@ -25,7 +25,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-3 mb-3">
-                        <h4>Filtrar Tarefas: </h4>
+                        <h4 class="font-weight-bold">Filtrar Tarefas: </h4>
                     </div>
                     <div class="col-9 mb-3">
                         <input type="text" ng-model="consulta.tarefa" class="form-control" />
@@ -38,6 +38,7 @@
                                 <tr>
                                     <th title="Código">Código</th>
                                     <th title="ISBN">Tipo</th>
+                                    <th title="Tipo">Título</th>
                                     <th title="Tipo">Descricao</th>
                                     <th title="Título">Data</th>
                                     <th></th>
@@ -48,6 +49,7 @@
                                 <tr ng-repeat="t in tarefas | filter: consulta.tarefa | orderBy : '+Data'">
                                     <td>{{ t.Id }}</td>
                                     <td>{{ t.Tipo.Descricao }}</td>
+                                    <td>{{ t.Titulo }}</td>
                                     <td>{{ t.Descricao }}</td>
                                     <td>{{ t.Data | date: 'dd/MM/yyyy' }}</td>
                                     <th><button ng-click="tarefaEditar(t)" class="btn btn-dark">Editar</button></th>
@@ -60,18 +62,22 @@
                 <div class="dropdown-divider mt-2"></div>
                 <div class="row m-2">
                     <div class="col-12 p-2 bg-light rounded">
-                        <h4 class="text-center ">Cadastrar Nova Tarefa</h4>
+                        <h4 class="text-center font-weight-bold">Cadastrar Nova Tarefa</h4>
                     </div>
                 </div>
                 <form name="formTarefa">
                     <div class="row">
                         <div class="col-12 mb-2">
+                            <h6>Título:</h6>
+                            <input type="text" maxlength="100" ng-model="tarefa.Titulo" required name="Titulo" class="form-control"></input>
+                        </div>
+                        <div class="col-12 mb-2">
                             <h6>Descrição:</h6>
-                            <input type="text" maxlength="100" ng-model="tarefa.Descricao" required name="Descricao" class="form-control" />
+                            <textarea maxlength="250" rows="3" ng-model="tarefa.Descricao" required name="Descricao" class="form-control"></textarea>
                         </div>
                         <div class="col-8 mb-2">
                             <h6>Tipo Tarefa:</h6>
-                            <select ng-model="tarefa.Tipo" ng-options="t.Descricao for t in tarefaTipo track by t.Id" required name="Tipo" class="form-control">
+                            <select ng-model="tarefa.Tipo" ng-options="t.Descricao for t in tarefaTipo | orderBy: 'Descricao' track by t.Id " required name="Tipo" class="form-control">
                                 <option value=""></option>
                             </select>
                         </div>

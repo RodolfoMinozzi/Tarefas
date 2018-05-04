@@ -34,6 +34,7 @@ namespace Tarefas.Data
             using (Conexao c = new Conexao(con))
             {
                 c.Param("@TipoId", tarefa.Tipo.Id);
+                c.Param("@Titulo", tarefa.Titulo);
                 c.Param("@Descricao", tarefa.Descricao);
                 c.Param("@Data", tarefa.Data);
 
@@ -41,12 +42,12 @@ namespace Tarefas.Data
                 if (tarefa.Id > 0)
                 {
                     c.Param("@Id", tarefa.Id);
-                    sQuery = "UPDATE Tarefa SET TipoId=@TipoId,Descricao=@Descricao,Data=@Data WHERE Id=@Id";
+                    sQuery = "UPDATE Tarefa SET TipoId=@TipoId,Titulo=@Titulo,Descricao=@Descricao,Data=@Data WHERE Id=@Id";
                     c.Execute(sQuery);
                 }
                 else
                 {
-                    sQuery = "INSERT INTO Tarefa (TipoId,Descricao,Data) VALUES (@TipoId,@Descricao,@Data); SELECT @@IDENTITY;";
+                    sQuery = "INSERT INTO Tarefa (TipoId,Titulo,Descricao,Data) VALUES (@TipoId,@Titulo,@Descricao,@Data); SELECT @@IDENTITY;";
                     tarefa.Id = c.ExecuteId(sQuery);
                 }
 
@@ -76,7 +77,7 @@ namespace Tarefas.Data
             List<Tarefa> lstTarefas = new List<Tarefa>();
             using (Conexao c = new Conexao(con))
             {
-                string sQuery = "SELECT T.Id,T.TipoId,TT.Descricao TipoDescricao,T.Descricao,T.Data FROM Tarefa T LEFT JOIN TarefaTipo TT on T.TipoId=TT.Id";
+                string sQuery = "SELECT T.Id,T.TipoId,T.Titulo,TT.Descricao TipoDescricao,T.Descricao,T.Data FROM Tarefa T LEFT JOIN TarefaTipo TT on T.TipoId=TT.Id";
                 if (tarefa.Id > 0)
                 {
                     c.Param("@Id", tarefa.Id);
@@ -88,6 +89,7 @@ namespace Tarefas.Data
                 {
                     Tarefa t = new Tarefa();
                     t.Id = int.Parse(Convert.ToString(r["Id"]));
+                    t.Titulo = Convert.ToString(r["Titulo"]);
                     t.Descricao = Convert.ToString(r["Descricao"]);
                     if (c.IsDate(r["Data"])) t.Data = Convert.ToDateTime(r["Data"]);
                     t.Tipo = new TarefaTipo();
